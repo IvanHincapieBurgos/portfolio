@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyectos de ingeniería de datos de Iván Hincapié: pipelines ELT en AWS, modelado dimensional, automatización de reportería y dashboards en Tableau y Power BI.">
+    <meta name="author" content="Iván Hincapié">
+    <title>Proyectos | Iván Hincapié</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23082154'/><text x='16' y='22' font-family='monospace' font-size='15' font-weight='bold' fill='%2338a7e8' text-anchor='middle'>IH</text></svg>">
+</head>
+
+<body>
+    <header class="site-header" id="main-header">
+        <nav class="nav" aria-label="Navegación principal">
+            <a class="brand" href="index.html" aria-label="Inicio de Iván Hincapié">
+                <span class="brand-mark">IH</span>
+                <span>Portafolio</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a class="active" href="proyectos.html">Proyectos</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ============================ HERO ============================ -->
+        <section class="hero projects-hero">
+            <div class="hero-inner">
+                <div>
+                    <div class="eyebrow">Proyectos</div>
+                    <h1>Proyectos que convierten datos en decisiones.</h1>
+                    <p class="hero-copy">
+                        Soluciones de <strong>ingeniería de datos</strong> construidas con Python, SQL, AWS y
+                        Airflow, y los tableros en Tableau y Power BI que sostienen la operación del día a día.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================ PROYECTOS ============================ -->
+        <section class="section" id="proyectos">
+            <div class="section-heading">
+                <div>
+                    <h2>Trabajo técnico, resultados medibles.</h2>
+                </div>
+                <p class="section-intro">Filtra por la tecnología principal de cada solución.</p>
+            </div>
+
+            <!-- Filtro por tecnología. Los value de los radios coinciden exactamente
+                 con los slugs declarados en el atributo data-tech de cada tarjeta. -->
+            <div class="filter-card">
+                <p class="filter-legend" id="filter-legend">Elige el stack técnico:</p>
+                <div class="radio-group" id="tech-filter" role="radiogroup" aria-labelledby="filter-legend">
+                    <input type="radio" id="f-python" name="tecnologia" value="python">
+                    <label for="f-python">Python</label>
+
+                    <input type="radio" id="f-sql" name="tecnologia" value="sql">
+                    <label for="f-sql">SQL</label>
+
+                    <input type="radio" id="f-aws" name="tecnologia" value="aws">
+                    <label for="f-aws">AWS</label>
+
+                    <input type="radio" id="f-airflow" name="tecnologia" value="airflow">
+                    <label for="f-airflow">Airflow</label>
+
+                    <input type="radio" id="f-tableau" name="tecnologia" value="tableau">
+                    <label for="f-tableau">Tableau</label>
+
+                    <input type="radio" id="f-powerbi" name="tecnologia" value="power-bi">
+                    <label for="f-powerbi">Power BI</label>
+
+                    <button type="button" class="btn btn-ghost" id="clear-filter">Ver todos</button>
+                </div>
+                <p id="filter-result" class="filter-result" aria-live="polite">Mostrando todos los proyectos.</p>
+            </div>
+
+            <div class="proyectos-grid" id="proyectos-grid">
+                <article class="card project-card" data-tech="python,sql,aws,airflow">
+                    <div class="card-label">01. Data pipeline</div>
+                    <h3>MADI — Pipeline ELT inmobiliario</h3>
+                    <p>
+                        Pipeline ELT en AWS para el procesamiento de datos inmobiliarios en Medellín: data lake
+                        en S3, data warehouse en Athena y orquestación diaria con Apache Airflow sobre una
+                        infraestructura escalable.
+                    </p>
+                    <a class="project-link" href="https://github.com/IvanHincapieBurgos/MADI" target="_blank" rel="noopener">Ver repositorio</a>
+                    <div class="project-stack">
+                        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">AWS</span><span class="chip">Airflow</span>
+                    </div>
+                </article>
+
+                <article class="card project-card" data-tech="python,sql,airflow">
+                    <div class="card-label">02. Automatización</div>
+                    <h3>Automatización de reportería</h3>
+                    <p>
+                        Automatización de pipelines que redujo el tiempo de generación de reportes en un 97%,
+                        pasando de 24 horas a un máximo de 30 minutos y garantizando disponibilidad diaria
+                        de la información.
+                    </p>
+                    <div class="project-stack">
+                        <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Airflow</span>
+                    </div>
+                </article>
+
+                <article class="card project-card" data-tech="tableau,sql,python">
+                    <div class="card-label">03. Analytics</div>
+                    <h3>Ciclo de órdenes y alertas</h3>
+                    <p>
+                        Dashboard en Tableau para medir el ciclo completo de las órdenes, acompañado de un
+                        sistema de alertas por Slack. Redujo las cancelaciones mensuales en un 1.1%.
+                    </p>
+                    <div class="project-stack">
+                        <span class="chip">Tableau</span><span class="chip">SQL</span><span class="chip">Python</span>
+                    </div>
+                </article>
+
+                <article class="card project-card" data-tech="sql,aws">
+                    <div class="card-label">04. Data warehouse</div>
+                    <h3>Capa analítica en Redshift</h3>
+                    <p>
+                        Co-diseño y optimización de la arquitectura de la capa analítica en Amazon Redshift
+                        junto al equipo de datos, mejorando la disponibilidad y el tiempo de respuesta de la
+                        información para el negocio.
+                    </p>
+                    <div class="project-stack">
+                        <span class="chip">SQL</span><span class="chip">Redshift</span><span class="chip">AWS</span>
+                    </div>
+                </article>
+
+                <article class="card project-card" data-tech="python,aws">
+                    <div class="card-label">05. Cloud</div>
+                    <h3>Acceso de datos para partner de CX</h3>
+                    <p>
+                        Diseño y habilitación del acceso a datos para el partner tecnológico de experiencia de
+                        cliente, mediante el desarrollo de una función Lambda y un bucket S3 dedicado.
+                    </p>
+                    <div class="project-stack">
+                        <span class="chip">Python</span><span class="chip">AWS Lambda</span><span class="chip">S3</span>
+                    </div>
+                </article>
+
+                <article class="card project-card" data-tech="sql,power-bi">
+                    <div class="card-label">06. Data modeling</div>
+                    <h3>Data Warehouse en modelo estrella</h3>
+                    <p>
+                        Diseño e implementación de la arquitectura del Data Warehouse del área de entrenamiento
+                        bajo modelo estrella, centralizando la información operativa y reduciendo un 70% el
+                        trabajo manual de preparación de datos.
+                    </p>
+                    <div class="project-stack">
+                        <span class="chip">SQL</span><span class="chip">ETL</span><span class="chip">Power BI</span>
+                    </div>
+                </article>
+
+                <article class="card project-card" data-tech="power-bi,sql">
+                    <div class="card-label">07. Business intelligence</div>
+                    <h3>Tableros de logística de inventario</h3>
+                    <p>
+                        Tableros en Power BI para el monitoreo de KPIs y la gestión logística del inventario de
+                        computadores, que redujeron la pérdida de equipos en un 20% y el tiempo de reportes de
+                        capacitación en un 60%.
+                    </p>
+                    <div class="project-stack">
+                        <span class="chip">Power BI</span><span class="chip">SQL</span><span class="chip">Excel</span>
+                    </div>
+                </article>
+
+                <article class="card project-card" data-tech="python">
+                    <div class="card-label">08. Automatización</div>
+                    <h3>RPA de flujos de cancelación</h3>
+                    <p>
+                        Desarrollo e implementación de un RPA para automatizar los flujos de cancelación, que
+                        incrementó en un 10% la disponibilidad de tiempo laboral diario del equipo de asesores.
+                    </p>
+                    <div class="project-stack">
+                        <span class="chip">Python</span><span class="chip">Selenium</span><span class="chip">RPA</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            &copy; 2026 Iván Hincapié &middot;
+            <a href="https://github.com/IvanHincapieBurgos" target="_blank" rel="noopener">GitHub</a> &middot;
+            <a href="mailto:ivanjavierhincapie@gmail.com">Email</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

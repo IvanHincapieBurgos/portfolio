@@ -1,0 +1,844 @@
+/* ==========================================================================
+   Portafolio Ivan Hincapie
+   Hoja de estilos unica para index.html y proyectos.html
+   --------------------------------------------------------------------------
+   Indice
+   01. Tokens de diseno
+   02. Reset y base
+   03. Header y navegacion
+   04. Hero
+   05. Botones
+   06. Secciones
+   07. Tarjetas (perfil, info, proyecto, contacto, filtro)
+   08. Video
+   09. Formulario
+   10. Footer
+   11. Media queries
+   ========================================================================== */
+
+/* ==========================================================================
+   01. TOKENS DE DISENO (variables CSS)
+   ========================================================================== */
+:root {
+    --navy-950: #082154;
+    --navy-900: #0b1f38;
+    --navy-800: #102b4a;
+    --slate-700: #4a5769;
+    --slate-600: #607087;
+    --slate-500: #8291a5;
+    --slate-200: #dce5ef;
+    --white: #ffffff;
+    --blue: #38a7e8;
+    --blue-ink: #176b9b;
+    --blue-soft: #dff3ff;
+    --bg: #f7faff;
+    --line: rgba(10, 31, 56, .10);
+    --shadow: 0 20px 55px rgba(7, 20, 38, .10);
+    --shadow-lg: 0 30px 70px rgba(0, 0, 0, .20);
+    --radius: 22px;
+    --radius-sm: 12px;
+
+    --ok-ink: #1c6b46;
+    --ok-bg: #e8f8f0;
+    --ok-line: #b6e5cd;
+    --err-ink: #8c2b2b;
+    --err-bg: #fff0f0;
+    --err-line: #ffd0d0;
+
+    /* Ancho de contenido compartido por hero y secciones */
+    --wrap: min(1160px, calc(100% - 40px));
+    --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ==========================================================================
+   02. RESET Y BASE
+   ========================================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-sans);
+    color: var(--navy-950);
+    background: var(--bg);
+    line-height: 1.6;
+    /* El footer queda siempre abajo aunque el contenido sea corto */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main { flex: 1 0 auto; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button, input, textarea { font: inherit; }
+ul { list-style: none; }
+
+h1, h2, h3 { letter-spacing: -.04em; }
+
+.hidden { display: none !important; }
+
+/* Accesibilidad: foco visible y consistente en todo el sitio */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+}
+
+/* ==========================================================================
+   03. HEADER Y NAVEGACION
+   ========================================================================== */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    background: rgba(7, 20, 38, .94);
+    backdrop-filter: blur(30px);
+}
+
+.nav {
+    width: var(--wrap);
+    min-height: 76px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+    font-weight: 800;
+    letter-spacing: -.02em;
+}
+
+.brand-mark {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    border-radius: 11px;
+    color: var(--white);
+    background: rgba(255, 255, 255, .08);
+    font-family: var(--font-mono);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    color: #b9c7d8;
+    font-size: .92rem;
+    font-weight: 600;
+    transition: color .2s ease, background .2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--white);
+    background: rgba(255, 255, 255, .07);
+}
+
+/* ==========================================================================
+   04. HERO
+   ========================================================================== */
+.hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    background:
+        radial-gradient(circle at 78% 20%, rgba(56, 167, 232, .18), transparent 30%),
+        linear-gradient(135deg, var(--navy-950), var(--navy-900) 60%, #123a5e 90%);
+}
+
+/* Reticula decorativa que se desvanece hacia abajo */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: .12;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .15) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    width: var(--wrap);
+    margin-inline: auto;
+    padding: clamp(64px, 8vw, 92px) 0;
+    /* min-height evita que el hero colapse cuando el texto es corto */
+    min-height: 520px;
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: clamp(40px, 5vw, 72px);
+    align-items: center;
+}
+
+/* La pagina de proyectos usa un hero de una sola columna */
+.projects-hero .hero-inner {
+    grid-template-columns: 1fr;
+    min-height: 380px;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 20px;
+    /* Azul claro: legible sobre el fondo navy del hero */
+    color: #faf8f8;
+    font: 700 .78rem/1 var(--font-mono);
+    letter-spacing: .14em;
+    text-transform: capitalize;
+}
+
+.eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+}
+
+.hero h1 {
+    max-width: 15ch;
+    margin-bottom: 22px;
+    font-size: clamp(2.4rem, 5.4vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -.05em;
+}
+
+.projects-hero h1 { max-width: 20ch; }
+
+.hero-copy {
+    max-width: 62ch;
+    color: #c1cedd;
+    font-size: clamp(1rem, 1.4vw, 1.14rem);
+}
+
+.hero-copy strong { color: var(--white); font-weight: 700; }
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+/* --- Tarjeta tipo terminal (columna derecha del hero) --------------------- */
+.terminal-card {
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, .055);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    /* Sostiene la caja aunque el bloque de codigo sea corto */
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-top {
+    display: flex;
+    gap: 7px;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.dot { width: 9px; height: 9px; border-radius: 50%; background: #7d8da1; }
+
+.terminal-code {
+    flex: 1 1 auto;
+    padding: 24px 26px;
+    margin: 0;
+    overflow-x: auto;
+    color: #a8dfff;
+    font: .82rem/1.95 var(--font-mono);
+    white-space: pre;
+}
+
+.terminal-code .muted { color: #71859c; }
+.terminal-code .key { color: var(--white); }
+.terminal-code .value { color: #8ed6ad; }
+
+/* ==========================================================================
+   05. BOTONES
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 22px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 700;
+    text-align: center;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+    color: var(--navy-950);
+    background: var(--blue);
+    box-shadow: 0 12px 30px rgba(56, 167, 232, .22);
+}
+
+.btn-primary:hover { background: #4fb4ef; }
+
+.btn-secondary {
+    color: var(--white);
+    border-color: rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .06);
+}
+
+.btn-secondary:hover { background: rgba(255, 255, 255, .12); }
+
+/* Variante clara: el boton "Ver todos" vive sobre una tarjeta blanca */
+.btn-ghost {
+    min-height: 42px;
+    margin-left: auto;
+    color: var(--navy-950);
+    border: 1px solid #cbd9e8;
+    background: var(--bg);
+}
+
+.btn-ghost:hover { background: var(--blue-soft); border-color: var(--blue); }
+
+/* ==========================================================================
+   06. SECCIONES
+   ========================================================================== */
+.section {
+    width: var(--wrap);
+    margin-inline: auto;
+    padding: clamp(58px, 7vw, 90px) 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 36px;
+}
+
+.section-kicker {
+    margin-bottom: 10px;
+    color: var(--blue-ink);
+    font: 800 .76rem/1 var(--font-mono);
+    letter-spacing: .13em;
+    text-transform: capitalize;
+}
+
+.section h2 {
+    max-width: 22ch;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.12;
+}
+
+.section-intro {
+    max-width: 42ch;
+    color: var(--slate-600);
+    font-size: .95rem;
+}
+
+/* ==========================================================================
+   07. TARJETAS
+   ========================================================================== */
+.card,
+.profile-card,
+.info-card,
+.contact-card,
+.filter-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    box-shadow: var(--shadow);
+}
+
+/* --- Seccion Perfil ------------------------------------------------------ */
+.profile-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 26px;
+    /* stretch iguala la altura de ambas tarjetas sin importar el largo del texto */
+    align-items: stretch;
+}
+
+.profile-card {
+    min-height: 360px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    /* Centrado vertical: cuando la tarjeta se estira para igualar a la de al
+       lado, el aire sobrante se reparte arriba y abajo en vez de dejar un
+       hueco en la mitad. */
+    justify-content: center;
+    background: linear-gradient(145deg, #eaf7ff, var(--white) 60%);
+}
+
+.profile-photo {
+    width: 116px;
+    height: 116px;
+    margin-bottom: 22px;
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 10px 26px rgba(7, 20, 38, .16);
+    object-fit: cover;
+}
+
+.profile-card h3 { margin-bottom: 6px; font-size: 1.35rem; }
+
+.profile-role {
+    color: var(--blue-ink);
+    font: 700 .82rem var(--font-mono);
+    letter-spacing: .04em;
+}
+
+.profile-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--slate-600);
+    font-size: .9rem;
+}
+
+.info-card {
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-card p {
+    color: var(--slate-600);
+    font-size: 1.04rem;
+}
+
+.info-card p + p { margin-top: 14px; }
+
+.highlights {
+    /* Ocupa el espacio sobrante para que la tarjeta nunca quede corta */
+    flex: 1 1 auto;
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    margin-top: 26px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+}
+
+/* Sin flex: el texto debe fluir en linea para que <strong> no se
+   convierta en un item de flex independiente y rompa la frase. */
+.highlights li {
+    position: relative;
+    padding-left: 24px;
+    color: var(--slate-700);
+    font-size: .95rem;
+}
+
+.highlights li::before {
+    content: "\25B9";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--blue);
+    font-weight: 700;
+}
+
+.highlights strong { color: var(--navy-950); }
+
+.skill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 26px;
+}
+
+.chip {
+    padding: 7px 11px;
+    border: 1px solid #cceafa;
+    border-radius: 999px;
+    color: var(--blue-ink);
+    background: var(--blue-soft);
+    font: 700 .78rem var(--font-mono);
+}
+
+/* --- Seccion Proyectos --------------------------------------------------- */
+.filter-card {
+    margin-bottom: 26px;
+    padding: 25px 30px;
+}
+
+.filter-legend {
+    display: block;
+    margin: 0 0 14px;
+    color: var(--slate-700);
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+.filter-result {
+    margin-top: 16px;
+    /* min-height reserva la linea: el layout no salta al cambiar el filtro */
+    min-height: 22px;
+    color: var(--slate-600);
+    font-size: .9rem;
+}
+
+.filter-result.is-empty { color: var(--err-ink); font-weight: 600; }
+
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 26px;
+    align-items: stretch;
+}
+
+.project-card {
+    min-height: 280px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 60px rgba(7, 20, 38, .14);
+}
+
+.card-label {
+    color: var(--blue-ink);
+    font: 700 .76rem var(--font-mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.project-card h3 { margin: 16px 0 10px; font-size: 1.28rem; }
+
+/* flex-grow en el parrafo alinea los chips al pie de todas las tarjetas */
+.project-card p {
+    flex: 1 1 auto;
+    color: var(--slate-600);
+    font-size: .96rem;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--blue-ink);
+    font-size: .9rem;
+    font-weight: 700;
+    border-bottom: 1px solid currentColor;
+}
+
+.project-link:hover { color: var(--navy-950); }
+
+.project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 24px;
+}
+
+/* --- Seccion Contacto ---------------------------------------------------- */
+.contact-wrap {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 26px;
+    align-items: stretch;
+}
+
+.contact-card {
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-card.dark {
+    color: var(--white);
+    border-color: transparent;
+    background: var(--navy-900);
+}
+
+.contact-card.dark h3 { font-size: 1.3rem; }
+.contact-card.dark p { margin-top: 14px; color: #afbed0; }
+
+.contact-meta {
+    /* Empuja los datos de contacto al fondo de la tarjeta oscura */
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 13px;
+    margin-top: 28px;
+    color: #c5d2e0;
+    font-size: .92rem;
+}
+
+.contact-meta a { border-bottom: 1px solid rgba(255, 255, 255, .25); }
+.contact-meta a:hover { color: var(--white); border-color: var(--white); }
+
+.contact-meta span { color: var(--slate-500); }
+
+/* ==========================================================================
+   08. VIDEO
+   ========================================================================== */
+.video-container {
+    position: relative;
+    width: 100%;
+    /* Se limita el ancho para que el marco 16:9 no genere un bloque
+       desproporcionadamente alto en pantallas grandes. */
+    max-width: 900px;
+    margin-inline: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--navy-950);
+    box-shadow: var(--shadow);
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+
+/* Marcador temporal mientras no haya video publicado */
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 8px;
+    padding: 30px;
+    text-align: center;
+    color: #9daec1;
+    /* Misma retícula del hero: el marco se lee como un slot de video */
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .06) 1px, transparent 1px);
+    background-size: 44px 44px;
+}
+
+.video-placeholder .play {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 14px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .07);
+    color: var(--blue);
+    font-size: 1.3rem;
+    padding-left: 5px;
+}
+
+.video-placeholder strong { color: var(--white); font-size: 1.05rem; }
+.video-placeholder span { font-size: .88rem; }
+
+/* ==========================================================================
+   09. FORMULARIO
+   ========================================================================== */
+form {
+    display: grid;
+    gap: 8px;
+    align-content: start;
+}
+
+label {
+    margin-top: 10px;
+    color: var(--slate-700);
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #d5dfeb;
+    border-radius: 11px;
+    outline: none;
+    color: var(--navy-950);
+    background: #fbfdff;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+textarea { min-height: 140px; resize: vertical; }
+
+input:focus,
+textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(56, 167, 232, .12);
+    background: var(--white);
+}
+
+/* Campo marcado como invalido por la validacion de JS */
+input.is-invalid,
+textarea.is-invalid {
+    border-color: #e2a0a0;
+    background: #fffafa;
+}
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 18px;
+    margin: 6px 0;
+}
+
+.radio-group input { width: auto; accent-color: var(--blue); }
+.radio-group label { margin: 0; font-weight: 600; }
+
+.word-counter {
+    margin-top: 4px;
+    color: var(--slate-500);
+    font-size: .8rem;
+    font-family: var(--font-mono);
+}
+
+.word-counter.is-out { color: var(--err-ink); font-weight: 700; }
+
+/* Mensaje de estado del formulario (error o exito) */
+.form-status {
+    margin-bottom: 6px;
+    padding: 12px 14px;
+    border-radius: 11px;
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.form-status.is-error {
+    color: var(--err-ink);
+    background: var(--err-bg);
+    border: 1px solid var(--err-line);
+}
+
+.form-status.is-success {
+    color: var(--ok-ink);
+    background: var(--ok-bg);
+    border: 1px solid var(--ok-line);
+}
+
+form .btn { margin-top: 18px; }
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+footer {
+    flex-shrink: 0;
+    padding: 28px 20px;
+    color: #cad7e6;
+    text-align: center;
+    font-size: .84rem;
+    background: var(--slate-700);
+    border-top: 1px solid rgba(255, 255, 255, .07);
+}
+
+footer a { border-bottom: 1px solid rgba(255, 255, 255, .3); }
+footer a:hover { color: var(--white); }
+
+/* ==========================================================================
+   11. MEDIA QUERIES
+   --------------------------------------------------------------------------
+   1024px - ajuste de proporciones antes de apilar
+    860px - colapso a una sola columna (tablet vertical)
+    620px - optimizacion para movil
+   ========================================================================== */
+
+/* --- Corte 1: portatiles pequenos / tablet horizontal -------------------- */
+@media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr .9fr; }
+    .profile-grid,
+    .contact-wrap { grid-template-columns: 1fr 1.15fr; }
+    .proyectos-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .section h2 { max-width: 100%; }
+}
+
+/* --- Corte 2: apilado en una columna ------------------------------------- */
+@media (max-width: 860px) {
+    .hero-inner,
+    .profile-grid,
+    .contact-wrap {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-inner { min-height: 0; gap: 45px; }
+    .terminal-card { max-width: 640px; min-height: 0; }
+
+    /* En movil la tarjeta oscura de contacto va despues del formulario */
+    .contact-card.dark { order: 2; }
+
+    .profile-card { min-height: 0; }
+    .contact-meta { justify-content: flex-start; }
+    .proyectos-grid { grid-template-columns: 1fr; }
+    .project-card { min-height: 0; }
+}
+
+/* --- Corte 3: movil ------------------------------------------------------ */
+@media (max-width: 620px) {
+    :root { --wrap: min(1160px, calc(100% - 28px)); }
+
+    .nav { min-height: 68px; gap: 12px; }
+    .brand span:last-child { display: none; }
+    .nav-links { gap: 2px; }
+    .nav-links a { padding: 8px 10px; font-size: .82rem; }
+
+    .hero-inner { padding: 52px 0; }
+    .hero h1 { max-width: 100%; }
+    .hero-actions .btn { width: 100%; }
+
+    .section-heading { display: block; }
+    .section-intro { max-width: 100%; margin-top: 14px; }
+
+    .profile-card,
+    .info-card,
+    .contact-card,
+    .filter-card,
+    .project-card { padding: 24px; }
+
+    .profile-photo { width: 92px; height: 92px; }
+    .terminal-code { padding: 20px; font-size: .76rem; }
+
+    .radio-group { gap: 8px 14px; }
+    .btn-ghost { width: 100%; margin: 10px 0 0; }
+}
+
+/* --- Preferencia de movimiento reducido ---------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
