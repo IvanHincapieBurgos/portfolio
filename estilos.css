@@ -23,7 +23,7 @@
     --navy-950: #082154;
     --navy-900: #0b1f38;
     --navy-800: #102b4a;
-    --slate-700: #4a5769;
+    --slate-700: #353535;
     --slate-600: #607087;
     --slate-500: #8291a5;
     --slate-200: #dce5ef;
@@ -32,9 +32,9 @@
     --blue-ink: #176b9b;
     --blue-soft: #dff3ff;
     --bg: #f7faff;
-    --line: rgba(10, 31, 56, .10);
-    --shadow: 0 20px 55px rgba(7, 20, 38, .10);
-    --shadow-lg: 0 30px 70px rgba(0, 0, 0, .20);
+    --line: #0a1f381a;
+    --shadow: 0 20px 55px #0714261a;
+    --shadow-lg: 0 30px 70px #00000033;
     --radius: 22px;
     --radius-sm: 12px;
 
@@ -98,8 +98,8 @@ textarea:focus-visible {
     position: sticky;
     top: 0;
     z-index: 50;
-    border-bottom: 1px solid rgba(255, 255, 255, .08);
-    background: rgba(7, 20, 38, .94);
+    border-bottom: 1px solid #ffffff14;
+    background: #020202;
     backdrop-filter: blur(30px);
 }
 
@@ -130,7 +130,7 @@ textarea:focus-visible {
     place-items: center;
     border-radius: 11px;
     color: var(--white);
-    background: rgba(255, 255, 255, .08);
+    background: #ffffff14;
     font-family: var(--font-mono);
 }
 
@@ -153,7 +153,7 @@ textarea:focus-visible {
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--white);
-    background: rgba(255, 255, 255, .07);
+    background: #ffffff12;
 }
 
 /* ==========================================================================
@@ -164,8 +164,7 @@ textarea:focus-visible {
     overflow: hidden;
     color: var(--white);
     background:
-        radial-gradient(circle at 78% 20%, rgba(56, 167, 232, .18), transparent 30%),
-        linear-gradient(135deg, var(--navy-950), var(--navy-900) 60%, #123a5e 90%);
+        var(--navy-950);
 }
 
 /* Reticula decorativa que se desvanece hacia abajo */
@@ -176,8 +175,8 @@ textarea:focus-visible {
     opacity: .12;
     pointer-events: none;
     background-image:
-        linear-gradient(rgba(255, 255, 255, .15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .15) 1px, transparent 1px);
+        linear-gradient(#ffffff26 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff26 1px, transparent 1px);
     background-size: 44px 44px;
     -webkit-mask-image: linear-gradient(to bottom, black, transparent);
     mask-image: linear-gradient(to bottom, black, transparent);
@@ -249,9 +248,9 @@ textarea:focus-visible {
 
 /* --- Tarjeta tipo terminal (columna derecha del hero) --------------------- */
 .terminal-card {
-    border: 1px solid rgba(255, 255, 255, .12);
+    border: 1px solid #ffffff1f;
     border-radius: var(--radius);
-    background: rgba(255, 255, 255, .055);
+    background: #ffffff0e;
     box-shadow: var(--shadow-lg);
     overflow: hidden;
     /* Sostiene la caja aunque el bloque de codigo sea corto */
@@ -264,7 +263,7 @@ textarea:focus-visible {
     display: flex;
     gap: 7px;
     padding: 14px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    border-bottom: 1px solid #ffffff14;
 }
 
 .dot { width: 9px; height: 9px; border-radius: 50%; background: #7d8da1; }
@@ -305,18 +304,18 @@ textarea:focus-visible {
 .btn-primary {
     color: var(--navy-950);
     background: var(--blue);
-    box-shadow: 0 12px 30px rgba(56, 167, 232, .22);
+    box-shadow: 0 12px 30px #38a7e838;
 }
 
 .btn-primary:hover { background: #4fb4ef; }
 
 .btn-secondary {
     color: var(--white);
-    border-color: rgba(255, 255, 255, .18);
-    background: rgba(255, 255, 255, .06);
+    border-color: #ffffff2e;
+    background: #ffffff0f;
 }
 
-.btn-secondary:hover { background: rgba(255, 255, 255, .12); }
+.btn-secondary:hover { background: #ffffff1f; }
 
 /* Variante clara: el boton "Ver todos" vive sobre una tarjeta blanca */
 .btn-ghost {
@@ -407,7 +406,7 @@ textarea:focus-visible {
     margin-bottom: 22px;
     border-radius: 50%;
     border: 3px solid var(--white);
-    box-shadow: 0 10px 26px rgba(7, 20, 38, .16);
+    box-shadow: 0 10px 26px #07142629;
     object-fit: cover;
 }
 
@@ -531,7 +530,7 @@ textarea:focus-visible {
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 25px 60px rgba(7, 20, 38, .14);
+    box-shadow: 0 25px 60px #07142624;
 }
 
 .card-label {
@@ -603,7 +602,7 @@ textarea:focus-visible {
     font-size: .92rem;
 }
 
-.contact-meta a { border-bottom: 1px solid rgba(255, 255, 255, .25); }
+.contact-meta a { border-bottom: 1px solid #ffffff40; }
 .contact-meta a:hover { color: var(--white); border-color: var(--white); }
 
 .contact-meta span { color: var(--slate-500); }
@@ -646,8 +645,8 @@ textarea:focus-visible {
     color: #9daec1;
     /* Misma retícula del hero: el marco se lee como un slot de video */
     background-image:
-        linear-gradient(rgba(255, 255, 255, .06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .06) 1px, transparent 1px);
+        linear-gradient(#ffffff0f 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff0f 1px, transparent 1px);
     background-size: 44px 44px;
 }
 
@@ -657,9 +656,9 @@ textarea:focus-visible {
     margin-bottom: 14px;
     display: grid;
     place-items: center;
-    border: 1px solid rgba(255, 255, 255, .22);
+    border: 1px solid #ffffff38;
     border-radius: 50%;
-    background: rgba(255, 255, 255, .07);
+    background: #ffffff12;
     color: var(--blue);
     font-size: 1.3rem;
     padding-left: 5px;
@@ -701,7 +700,7 @@ textarea { min-height: 140px; resize: vertical; }
 input:focus,
 textarea:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 4px rgba(56, 167, 232, .12);
+    box-shadow: 0 0 0 4px #38a7e81f;
     background: var(--white);
 }
 
@@ -761,14 +760,14 @@ form .btn { margin-top: 18px; }
 footer {
     flex-shrink: 0;
     padding: 28px 20px;
-    color: #cad7e6;
+    color: #fafafa;
     text-align: center;
     font-size: .84rem;
     background: var(--slate-700);
-    border-top: 1px solid rgba(255, 255, 255, .07);
+    border-top: 1px solid #ffffff12;
 }
 
-footer a { border-bottom: 1px solid rgba(255, 255, 255, .3); }
+footer a { border-bottom: 1px solid #ffffff4d; }
 footer a:hover { color: var(--white); }
 
 /* ==========================================================================
